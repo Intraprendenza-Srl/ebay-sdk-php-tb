@@ -11,7 +11,6 @@
 namespace DTS\eBaySDK\Browse\Types;
 
 /**
- *
  * @property \DTS\eBaySDK\Browse\Types\Image[] $additionalImages
  * @property string $ageGroup
  * @property integer $bidCount
@@ -49,6 +48,7 @@ namespace DTS\eBaySDK\Browse\Types;
  * @property integer $quantityLimitPerBuyer
  * @property \DTS\eBaySDK\Browse\Types\ItemReturnTerms $returnTerms
  * @property \DTS\eBaySDK\Browse\Types\Seller $seller
+ * @property string $sellerItemRevision
  * @property \DTS\eBaySDK\Browse\Types\ShippingOption[] $shippingOptions
  * @property \DTS\eBaySDK\Browse\Types\ShipToLocations $shipToLocations
  * @property string $shortDescription
@@ -61,7 +61,8 @@ namespace DTS\eBaySDK\Browse\Types;
  * @property boolean $topRatedBuyingExperience
  * @property integer $uniqueBidderCount
  * @property \DTS\eBaySDK\Browse\Types\ErrorDetailV3[] $warnings
- */
+ * @property integer $watchCount
+**/
 class Item extends \DTS\eBaySDK\Types\BaseType
 {
     /**
@@ -367,7 +368,13 @@ class Item extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => true,
             'attribute' => false,
             'elementName' => 'warnings'
-        ]
+        ],
+	    'watchCount' => [
+		    'type' => 'integer',
+		    'repeatable' => false,
+		    'attribute' => false,
+		    'elementName' => 'watchCount'
+	    ]
     ];
 
     /**
@@ -375,7 +382,7 @@ class Item extends \DTS\eBaySDK\Types\BaseType
      */
     public function __construct(array $values = [])
     {
-        list($parentValues, $childValues) = self::getParentValues(self::$propertyTypes, $values);
+        [$parentValues, $childValues] = self::getParentValues(self::$propertyTypes, $values);
 
         parent::__construct($parentValues);
 
