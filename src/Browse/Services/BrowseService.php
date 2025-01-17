@@ -26,7 +26,10 @@ class BrowseService extends \DTS\eBaySDK\Browse\Services\BrowseBaseService
                 'item_id' => [
                     'valid' => ['string'],
                     'required' => true
-                ]
+                ],
+	            'fieldgroups' => [
+		            'valid' => ['string']
+	            ]
             ]
         ],
 	    'GetItems' => [
