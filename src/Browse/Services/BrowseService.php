@@ -29,6 +29,17 @@ class BrowseService extends \DTS\eBaySDK\Browse\Services\BrowseBaseService
                 ]
             ]
         ],
+	    'GetItems' => [
+		    'method' => 'GET',
+		    'resource' => 'item',
+		    'responseClass' => '\DTS\eBaySDK\Browse\Types\GetItemsRestResponse',
+		    'params' => [
+			    'item_ids' => [
+				    'valid' => ['string'],
+				    'required' => true
+			    ]
+		    ]
+	    ],
         'GetItemByLegacyId' => [
             'method' => 'GET',
             'resource' => 'item/get_item_by_legacy_id',
@@ -121,6 +132,24 @@ class BrowseService extends \DTS\eBaySDK\Browse\Services\BrowseBaseService
     {
         return $this->callOperationAsync('GetItem', $request);
     }
+
+	/**
+	 * @param \DTS\eBaySDK\Browse\Types\GetItemsRestRequest $request
+	 * @return \DTS\eBaySDK\Browse\Types\GetItemsRestResponse
+	 */
+	public function getItems(\DTS\eBaySDK\Browse\Types\GetItemsRestRequest $request)
+	{
+		return $this->getItemsAsync($request)->wait();
+	}
+
+	/**
+	 * @param \DTS\eBaySDK\Browse\Types\GetItemsRestRequest $request
+	 * @return \GuzzleHttp\Promise\PromiseInterface
+	 */
+	public function getItemsAsync(\DTS\eBaySDK\Browse\Types\GetItemsRestRequest $request)
+	{
+		return $this->callOperationAsync('GetItems', $request);
+	}
 
     /**
      * @param \DTS\eBaySDK\Browse\Types\GetItemByLegacyIdRestRequest $request
