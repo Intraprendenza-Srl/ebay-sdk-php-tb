@@ -11,11 +11,11 @@
 namespace DTS\eBaySDK\Browse\Types;
 
 /**
- *
  * @property \DTS\eBaySDK\Browse\Types\Image[] $additionalImages
  * @property integer $bidCount
  * @property string[] $buyingOptions
  * @property \DTS\eBaySDK\Browse\Types\Category[] $categories
+ * @property string[] $leafCategoryIds
  * @property string $condition
  * @property string $conditionId
  * @property \DTS\eBaySDK\Browse\Types\ConvertedAmount $currentBidPrice
@@ -70,7 +70,7 @@ class ItemSummary extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'categories'
         ],
-	    'categoryId' => [
+	    'leafCategoryIds' => [
 		    'type' => 'string',
 		    'repeatable' => false,
 		    'attribute' => false,
@@ -208,12 +208,6 @@ class ItemSummary extends \DTS\eBaySDK\Types\BaseType
 		    'attribute' => false,
 		    'elementName' => 'shortDescription'
 	    ],
-	    'refinement' => [
-		    'type' => 'DTS\eBaySDK\Browse\Types\Refinement',
-		    'repeatable' => false,
-		    'attribute' => false,
-		    'elementName' => 'refinement'
-	    ],
         'title' => [
             'type' => 'string',
             'repeatable' => false,
@@ -227,7 +221,7 @@ class ItemSummary extends \DTS\eBaySDK\Types\BaseType
      */
     public function __construct(array $values = [])
     {
-        list($parentValues, $childValues) = self::getParentValues(self::$propertyTypes, $values);
+        [$parentValues, $childValues] = self::getParentValues(self::$propertyTypes, $values);
 
         parent::__construct($parentValues);
 
