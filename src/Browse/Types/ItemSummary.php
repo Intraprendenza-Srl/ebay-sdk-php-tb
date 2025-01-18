@@ -70,6 +70,12 @@ class ItemSummary extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'categories'
         ],
+	    'categoryId' => [
+		    'type' => 'string',
+		    'repeatable' => false,
+		    'attribute' => false,
+		    'elementName' => 'leafCategoryIds'
+	    ],
         'condition' => [
             'type' => 'string',
             'repeatable' => false,
@@ -201,6 +207,12 @@ class ItemSummary extends \DTS\eBaySDK\Types\BaseType
 		    'repeatable' => false,
 		    'attribute' => false,
 		    'elementName' => 'shortDescription'
+	    ],
+	    'refinement' => [
+		    'type' => 'DTS\eBaySDK\Browse\Types\Refinement',
+		    'repeatable' => false,
+		    'attribute' => false,
+		    'elementName' => 'refinement'
 	    ],
         'title' => [
             'type' => 'string',
