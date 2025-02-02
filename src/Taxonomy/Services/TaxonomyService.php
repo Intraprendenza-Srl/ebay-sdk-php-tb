@@ -84,7 +84,18 @@ class TaxonomyService extends \DTS\eBaySDK\Taxonomy\Services\TaxonomyBaseService
                     'required' => true
                 ]
             ]
-        ]
+        ],
+	    'GetACategoryTreeExpired' => [
+		    'method' => 'GET',
+		    'resource' => 'category_tree/{category_tree_id}/get_expired_categories',
+		    'responseClass' => '\DTS\eBaySDK\Taxonomy\Types\GetACategoryTreeExpiredRestResponse',
+		    'params' => [
+			    'category_tree_id' => [
+				    'valid' => ['string'],
+				    'required' => true
+			    ]
+		    ]
+	    ],
     ];
 
     /**
